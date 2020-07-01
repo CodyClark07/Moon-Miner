@@ -1,22 +1,42 @@
 body{
     font-family: 'MuseoModerno', cursive;;
 }
+.grabbing {cursor: -webkit-grabbing; cursor: grabbing;}
+
 .bg-stars{
     background-image: url(https://i.pinimg.com/originals/a5/de/39/a5de392b257f6c85f23c0a7cc91feb95.gif);
     background-repeat: no-repeat;
     background-size: cover;
 }
 
+.sign-in-card{
+    width: 500px;
+    height: 100px;
+    background-color:rgba(76, 240, 61, 0.473);
+    padding: 1em;
+    box-shadow:10px 5px 5px blue;
+    border-radius: 30px;
+}
+
 .inventory-card{
     width: 500px;
-    height: 300px;
+    height: 400px;
     background-color:rgba(76, 240, 61, 0.473);
     padding: 1em;
     box-shadow:10px 5px 5px blue;
     border-radius: 30px;
   }
   .upgrades-card{
-    width: 500px;
+    width: 550px;
+    height: 400px;
+    background-color:rgba(76, 240, 61, 0.473);
+    padding: 1em;
+    box-shadow:10px 5px 5px blue;
+    border-radius: 30px;
+  }
+
+  .stats-card{
+    width: 400px;
     height: 300px;
     background-color:rgba(76, 240, 61, 0.473);
     padding: 1em;
@@ -25,7 +45,9 @@ body{
   }
 
  .moon-position{
-     position: relative;
-   top: 200px;
-  
+     position: static;
  }
+
+ .hidden{
+    display: none;
+  }
