@@ -8,28 +8,28 @@ let autoIntervalClock = false;
 let upgradeItems = {
     shovel: {
         name: "shovel",
-        price: 10,
+        price: 20,
         quantity: 1,
         multiplier: 1,
         upgradeIncrement: 1.3
     },
     drill: {
         name: "drill",
-        price: 40,
+        price: 100,
         quantity: 0,
         multiplier: 5,
         upgradeIncrement: 1.25
     },
     laser: {
         name: "laser",
-        price: 80,
+        price: 400,
         quantity: 0,
         multiplier: 10,
         upgradeIncrement: 1.5
     },
     rover: {
         name: "rover",
-        price: 100,
+        price: 800,
         quantity: 0,
         multiplier: 20,
         upgradeIncrement: 1.75
