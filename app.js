@@ -9,7 +9,7 @@ let upgradeItems = {
     shovel: {
         name: "shovel",
         price: 20,
-        quantity: 1,
+        quantity: 0,
         multiplier: 1,
         upgradeIncrement: 1.3
     },
@@ -81,15 +81,13 @@ function loadGame() {
 //#endregion
 
 //#region Game Logic- GamePlay
-function mine(input) {
-    multipliedRate = upgradeItems[input].quantity * upgradeItems[input].multiplier;
-
+function mine() {
     if (multipliedRate == 0) {
         moonRockCount++
     }
     else if (multipliedRate > 0) {
-        moonRockCount += multipliedRate
-
+        moonRockCount += multipliedRate + 1
+        console.log(multipliedRate)
         console.log(`${moonRockCount}`);
 
     }
@@ -98,16 +96,10 @@ function mine(input) {
 
 function upgrade(input) {
     let upgradeSelect = upgradeItems[input]
-    if (upgradeSelect.price <= moonRockCount && upgradeItems[input] !== "shovel") {
+    if (upgradeSelect.price <= moonRockCount) {
         upgradeSelect.quantity++;
         moonRockCount -= upgradeSelect.price
         multipliedRate += upgradeSelect.multiplier
-        upgradeSelect.price *= upgradeSelect.upgradeIncrement;
-
-    }
-    else if (upgradeSelect.price <= moonRockCount && input == "shovel") {
-        upgradeSelect.quantity++;
-        moonRockCount -= upgradeSelect.price
         upgradeSelect.price *= upgradeSelect.upgradeIncrement;
 
     }
@@ -158,7 +150,7 @@ function drawMRPS() {
     for (let key in upgradeItems) {
         if (upgradeItems[key].quantity > 0 && key !== 'shovel') {
             mrpsCard.innerHTML += `
-            <div><h3>${upgradeItems[key].name} - ${upgradeItems[key].quantity}: ${Math.floor((upgradeItems[key].multiplier) *
+            <div> <h3>${upgradeItems[key].name} - ${upgradeItems[key].quantity}: ${Math.floor((upgradeItems[key].multiplier) *
                 (upgradeItems[key].quantity) / 3)} MRPS</h3></div>`
         }
     }
@@ -182,8 +174,14 @@ function drawUpgrades() {
 
 function draw() {
     let clickCountElem = document.getElementById("moon-rock-count")
+    let multiplierRate = document.getElementById("multiplier-rate")
 
     clickCountElem.innerText = Math.floor(moonRockCount)
+
+    multiplierRate.innerText = multipliedRate + 1
+
+
+
     drawUpgrades()
 }
 draw()
