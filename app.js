@@ -45,16 +45,6 @@ function generateID() {
     );
 }
 
-function savePlayer() {
-    window.localStorage.setItem("player", JSON.stringify(players))
-    let playerElem = document.getElementById("player-name")
-    let playerName = ""
-    players.forEach(player => {
-        playerName += `<h3 class="text-white text-center"> Player Name: ${player.name}`
-    })
-    playerElem.innerHTML = playerName
-}
-
 function signIn(event) {
     event.preventDefault()
     let form = event.target
@@ -72,6 +62,15 @@ function signIn(event) {
     }
 
     form.reset()
+}
+function savePlayer() {
+    window.localStorage.setItem("player", JSON.stringify(players))
+    let playerElem = document.getElementById("player-name")
+    let playerName = ""
+    players.forEach(player => {
+        playerName += `<h3 class="text-white text-center"> Player Name: ${player.name}`
+    })
+    playerElem.innerHTML = playerName
 }
 function loadGame() {
     document.getElementById("sign-in").classList.add("hidden")
@@ -171,7 +170,7 @@ function drawUpgrades() {
     for (let key in upgradeItems) {
         if (moonRockCount >= 10) {
             upgradesAvailable.innerHTML += `  
-                <div class="col-3 col-md-3 ">
+                <div class="col- col-sm-4 col-md-6 flex-wrap ">
                 <button id="${upgradeItems[key].name}" class="btn btn-warning btn-lg"
                         onclick="upgrade('${key}')">${upgradeItems[key].name}: <br> $ ${Math.floor(Math.ceil(upgradeItems[key].price))}</button></div>`
 
