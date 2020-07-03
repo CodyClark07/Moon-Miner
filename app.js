@@ -11,28 +11,28 @@ let upgradeItems = {
         price: 20,
         quantity: 0,
         multiplier: 1,
-        upgradeIncrement: 1.3
+        upgradeIncrement: 1.4
     },
     drill: {
         name: "drill",
         price: 100,
         quantity: 0,
         multiplier: 5,
-        upgradeIncrement: 1.25
+        upgradeIncrement: 1.5
     },
     laser: {
         name: "laser",
         price: 400,
         quantity: 0,
         multiplier: 10,
-        upgradeIncrement: 1.5
+        upgradeIncrement: 1.6
     },
     rover: {
         name: "rover",
         price: 800,
         quantity: 0,
         multiplier: 20,
-        upgradeIncrement: 1.75
+        upgradeIncrement: 1.6
     }
 }
 //#region  Game Logic- Sign In/Load
@@ -68,7 +68,8 @@ function savePlayer() {
     let playerElem = document.getElementById("player-name")
     let playerName = ""
     players.forEach(player => {
-        playerName += `<h3 class="text-white text-center"> Player Name: ${player.name}`
+        playerName += `<h3 class="text-white text-center"> Player Name: ${player.name}</h3>`
+
     })
     playerElem.innerHTML = playerName
 }
@@ -88,11 +89,14 @@ function mine() {
     else if (multipliedRate > 0) {
         moonRockCount += multipliedRate + 1
         console.log(multipliedRate)
-        console.log(`${moonRockCount}`);
+        console.log(`${moonRockCount} `);
 
     }
     draw()
+
 }
+
+
 
 function upgrade(input) {
     let upgradeSelect = upgradeItems[input]
@@ -105,7 +109,7 @@ function upgrade(input) {
     }
 
     else {
-        alert(`Could not afford, need more moon rocks (${upgradeSelect.price - moonRockCount})`)
+        alert(`Could not afford, need more moon rocks(${upgradeSelect.price - moonRockCount})`)
     }
 
     drawInventory()
@@ -138,10 +142,10 @@ function drawInventory() {
     let inventoryCard = document.getElementById('inventory-card')
     inventoryCard.innerHTML = ''
     inventoryCard.innerHTML += `
-           <h3 id="shovel"> ${ upgradeItems.shovel.quantity} </h3>
-           <h3 id="drill">${ upgradeItems.drill.quantity} </h3>
-           <h3 id="laser">${ upgradeItems.laser.quantity} </h3>
-           <h3 id="rover">${ upgradeItems.rover.quantity} </h3>`
+                <h3 id ="shovel">${ upgradeItems.shovel.quantity} </h3>
+                <h3 id="drill">${upgradeItems.drill.quantity} </h3>
+                <h3 id="laser">${upgradeItems.laser.quantity} </h3>
+                <h3 id="rover">${upgradeItems.rover.quantity} </h3>`
 }
 
 function drawMRPS() {
@@ -150,8 +154,8 @@ function drawMRPS() {
     for (let key in upgradeItems) {
         if (upgradeItems[key].quantity > 0 && key !== 'shovel') {
             mrpsCard.innerHTML += `
-            <div> <h3>${upgradeItems[key].name} - ${upgradeItems[key].quantity}: ${Math.floor((upgradeItems[key].multiplier) *
-                (upgradeItems[key].quantity) / 3)} MRPS</h3></div>`
+                    <div> <h3>${upgradeItems[key].name} - ${upgradeItems[key].quantity}: ${Math.floor((upgradeItems[key].multiplier) *
+                (upgradeItems[key].quantity) / 3)} MRPS</h3></div> `
         }
     }
 }
@@ -161,10 +165,10 @@ function drawUpgrades() {
     upgradesAvailable.innerHTML = ''
     for (let key in upgradeItems) {
         if (moonRockCount >= 10) {
-            upgradesAvailable.innerHTML += `  
-                <div class="col- col-sm-4 col-md-6 flex-wrap ">
-                <button id="${upgradeItems[key].name}" class="btn btn-warning btn-lg"
-                        onclick="upgrade('${key}')">${upgradeItems[key].name}: <br> $ ${Math.floor(Math.ceil(upgradeItems[key].price))}</button></div>`
+            upgradesAvailable.innerHTML += `
+                            <div class="col- col-sm-4 col-md-6 flex-wrap ">
+                                <button id="${upgradeItems[key].name}" class="btn btn-warning btn-lg"
+                                    onclick="upgrade('${key}')">${upgradeItems[key].name}: <br> $ ${Math.floor(Math.ceil(upgradeItems[key].price))}</button></div>`
 
         }
 
